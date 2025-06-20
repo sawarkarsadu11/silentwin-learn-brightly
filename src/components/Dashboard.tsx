@@ -7,7 +7,11 @@ import { Progress } from '@/components/ui/progress';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-const Dashboard = () => {
+interface DashboardProps {
+  onNavigate: (page: string) => void;
+}
+
+const Dashboard = ({ onNavigate }: DashboardProps) => {
   const [selectedClass, setSelectedClass] = useState('');
   const [selectedBoard, setSelectedBoard] = useState('');
 
@@ -18,6 +22,44 @@ const Dashboard = () => {
     { name: 'Social Studies', progress: 45, icon: '🌍', color: 'from-orange-400 to-orange-600' },
     { name: 'Hindi', progress: 70, icon: '✍️', color: 'from-pink-400 to-pink-600' },
     { name: 'ISL Learning', progress: 90, icon: '✋', color: 'from-teal-400 to-teal-600' },
+  ];
+
+  const features = [
+    {
+      title: 'Video Learning',
+      description: 'Interactive video lessons with ISL Avatar',
+      icon: '🎥',
+      color: 'from-blue-400 to-blue-600',
+      page: 'video-learning'
+    },
+    {
+      title: 'Learn ISL',
+      description: 'Master Indian Sign Language',
+      icon: '✋',
+      color: 'from-purple-400 to-purple-600',
+      page: 'learn-isl'
+    },
+    {
+      title: 'Quiz & Progress',
+      description: 'Track your learning progress',
+      icon: '📊',
+      color: 'from-green-400 to-green-600',
+      page: 'quiz-progress'
+    },
+    {
+      title: 'SilentWin Friends',
+      description: 'Connect with peers safely',
+      icon: '👫',
+      color: 'from-pink-400 to-pink-600',
+      page: 'friends'
+    },
+    {
+      title: 'Text to Sign',
+      description: 'Convert text to sign language',
+      icon: '🔄',
+      color: 'from-teal-400 to-teal-600',
+      page: 'text-to-sign'
+    }
   ];
 
   const recentActivities = [
@@ -41,12 +83,12 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-lg">✋</span>
               </div>
               <div>
-                <h1 className="font-bold text-xl gradient-text">SilentWin Dashboard</h1>
-                <p className="text-sm text-slate-500">Welcome back, Student!</p>
+                <h1 className="font-bold text-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">SilentWin</h1>
+                <p className="text-sm text-slate-500">Learn Beyond Sound</p>
               </div>
             </div>
             <Button variant="outline" className="border-slate-200 hover:bg-slate-50">
@@ -59,9 +101,9 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Class and Board Selection */}
         {(!selectedClass || !selectedBoard) && (
-          <Card className="mb-8 feature-card">
+          <Card className="mb-8 bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl gradient-text">Choose Your Learning Path</CardTitle>
+              <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">Choose Your Learning Path</CardTitle>
               <CardDescription>Select your class and board to get personalized content</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -109,7 +151,7 @@ const Dashboard = () => {
               
               {selectedClass && selectedBoard && (
                 <div className="text-center">
-                  <Badge className="bg-gradient-primary text-white px-6 py-2 text-lg">
+                  <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 text-lg">
                     Perfect! Let's start learning 🚀
                   </Badge>
                 </div>
@@ -122,44 +164,64 @@ const Dashboard = () => {
           <>
             {/* Quick Stats */}
             <div className="grid md:grid-cols-4 gap-6 mb-8">
-              <Card className="feature-card text-center">
+              <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg text-center">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold gradient-text">12</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">12</div>
                   <div className="text-sm text-slate-500">Lessons Completed</div>
                 </CardContent>
               </Card>
-              <Card className="feature-card text-center">
+              <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg text-center">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold gradient-text">8</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">8</div>
                   <div className="text-sm text-slate-500">Quizzes Passed</div>
                 </CardContent>
               </Card>
-              <Card className="feature-card text-center">
+              <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg text-center">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold gradient-text">4</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">4</div>
                   <div className="text-sm text-slate-500">Badges Earned</div>
                 </CardContent>
               </Card>
-              <Card className="feature-card text-center">
+              <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg text-center">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold gradient-text">7</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">7</div>
                   <div className="text-sm text-slate-500">Day Streak</div>
                 </CardContent>
               </Card>
             </div>
 
-            <Tabs defaultValue="subjects" className="space-y-6">
+            <Tabs defaultValue="features" className="space-y-6">
               <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm">
+                <TabsTrigger value="features">All Features</TabsTrigger>
                 <TabsTrigger value="subjects">My Subjects</TabsTrigger>
                 <TabsTrigger value="activities">Recent Activity</TabsTrigger>
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>
-                <TabsTrigger value="features">All Features</TabsTrigger>
               </TabsList>
+
+              <TabsContent value="features">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {features.map((feature, index) => (
+                    <Card 
+                      key={index} 
+                      className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300 cursor-pointer"
+                      onClick={() => onNavigate(feature.page)}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                          <span className="text-3xl text-white">{feature.icon}</span>
+                        </div>
+                        <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
+                        <p className="text-slate-600 text-sm">{feature.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
 
               <TabsContent value="subjects">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {subjects.map((subject, index) => (
-                    <Card key={index} className="feature-card group hover:shadow-xl transition-all duration-300">
+                    <Card key={index} className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300">
                       <CardHeader className="pb-4">
                         <div className="flex items-center space-x-3">
                           <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
@@ -173,7 +235,7 @@ const Dashboard = () => {
                       </CardHeader>
                       <CardContent>
                         <Progress value={subject.progress} className="mb-4" />
-                        <Button className="w-full bg-gradient-primary hover:shadow-lg transition-all duration-300">
+                        <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg transition-all duration-300">
                           Continue Learning
                         </Button>
                       </CardContent>
@@ -183,7 +245,7 @@ const Dashboard = () => {
               </TabsContent>
 
               <TabsContent value="activities">
-                <Card className="feature-card">
+                <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
                   <CardHeader>
                     <CardTitle>Recent Activities</CardTitle>
                     <CardDescription>Your learning journey so far</CardDescription>
@@ -209,7 +271,7 @@ const Dashboard = () => {
               <TabsContent value="achievements">
                 <div className="grid md:grid-cols-2 gap-6">
                   {achievements.map((achievement, index) => (
-                    <Card key={index} className="feature-card">
+                    <Card key={index} className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
                       <CardContent className="p-6">
                         <div className="flex items-center space-x-4">
                           <div className="text-4xl">{achievement.icon}</div>
@@ -221,70 +283,6 @@ const Dashboard = () => {
                       </CardContent>
                     </Card>
                   ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="features">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <Card className="feature-card group cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl text-white">🎥</span>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">Video Learning</h3>
-                      <p className="text-slate-600 text-sm">Interactive video lessons with ISL</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="feature-card group cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl text-white">✋</span>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">Learn ISL</h3>
-                      <p className="text-slate-600 text-sm">Master Indian Sign Language</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="feature-card group cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl text-white">📊</span>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">Quiz & Progress</h3>
-                      <p className="text-slate-600 text-sm">Track your learning progress</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="feature-card group cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl text-white">👫</span>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">SilentWin Friends</h3>
-                      <p className="text-slate-600 text-sm">Connect with peers safely</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="feature-card group cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl text-white">🤖</span>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">AI Chatbot</h3>
-                      <p className="text-slate-600 text-sm">Get instant help anytime</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="feature-card group cursor-pointer">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-teal-400 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl text-white">🔄</span>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">Text to Sign</h3>
-                      <p className="text-slate-600 text-sm">Convert text to sign language</p>
-                    </CardContent>
-                  </Card>
                 </div>
               </TabsContent>
             </Tabs>

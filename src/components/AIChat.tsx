@@ -14,7 +14,7 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm your SilentWin AI assistant. I can help you with learning, sign language, homework, and more! How can I help you today? 🤖✋",
+      text: "Hi! I'm Aria, your SilentWin AI teacher! 👋 I'm here to help you learn in the most accessible way possible. I can assist with:\n\n🎓 Academic questions\n✋ Sign language learning\n📊 Progress tracking\n👥 Finding study groups\n🔄 Text-to-sign conversion\n\nWhat would you like to explore today?",
       isBot: true,
       timestamp: new Date()
     }
@@ -36,7 +36,7 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
     // Simulate AI response
     const botResponse = {
       id: messages.length + 2,
-      text: "Thanks for your message! I understand you need help. As your AI assistant, I can provide support with:\n\n🎓 Academic questions\n✋ Sign language learning\n📊 Progress tracking\n👥 Connecting with study groups\n🔄 Text-to-sign conversion\n\nWhat specific topic would you like to explore?",
+      text: "That's a great question! As your AI teacher, I'm designed specifically for deaf and hard-of-hearing students. I can provide visual explanations, connect concepts to sign language, and help in multiple ways:\n\n📚 Subject explanations with visual aids\n✋ ISL translations and practice\n🎯 Personalized learning paths\n🤝 Study buddy matching\n📈 Progress visualization\n\nWhich subject or topic would you like to dive into?",
       isBot: true,
       timestamp: new Date()
     };
@@ -49,13 +49,15 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md h-[600px] p-0 flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-primary p-4 text-white">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-4 text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center space-x-2">
-              <span className="text-2xl">🤖</span>
+            <DialogTitle className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <span className="text-2xl">👩‍🏫</span>
+              </div>
               <div>
-                <div className="text-lg font-bold">SilentWin AI Assistant</div>
-                <div className="text-sm opacity-90">Always here to help</div>
+                <div className="text-lg font-bold">Aria - AI Teacher</div>
+                <div className="text-sm opacity-90">Your learning companion</div>
               </div>
             </DialogTitle>
           </DialogHeader>
@@ -72,8 +74,8 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
                 <div
                   className={`max-w-[80%] p-3 rounded-2xl ${
                     message.isBot
-                      ? 'bg-gradient-soft text-slate-800'
-                      : 'bg-gradient-primary text-white'
+                      ? 'bg-gradient-to-r from-blue-100 to-purple-100 text-slate-800'
+                      : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
                   }`}
                 >
                   <div className="whitespace-pre-wrap text-sm">
@@ -97,12 +99,12 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Type your message or question..."
-              className="flex-1 bg-slate-50 border-slate-200 focus:border-silent-blue-400"
+              placeholder="Ask me anything about learning..."
+              className="flex-1 bg-slate-50 border-slate-200 focus:border-blue-400"
             />
             <Button 
               type="submit"
-              className="bg-gradient-primary hover:shadow-lg transition-all duration-300"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg transition-all duration-300"
             >
               Send
             </Button>
@@ -113,23 +115,23 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
             <Button 
               variant="outline" 
               size="sm"
-              onClick={() => setInputMessage("How do I learn sign language?")}
-            >
-              Learn ISL
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => setInputMessage("Help with math homework")}
+              onClick={() => setInputMessage("Help me with math homework")}
             >
               Math Help
             </Button>
             <Button 
               variant="outline" 
               size="sm"
-              onClick={() => setInputMessage("Convert text to sign language")}
+              onClick={() => setInputMessage("Teach me new ISL signs")}
             >
-              Text to Sign
+              Learn ISL
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setInputMessage("Show my progress")}
+            >
+              My Progress
             </Button>
           </div>
         </div>
