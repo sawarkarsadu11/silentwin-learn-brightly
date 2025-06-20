@@ -61,13 +61,6 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
 
   const features = [
     {
-      title: 'Video Learning',
-      description: 'Interactive video lessons with ISL Avatar',
-      icon: '🎥',
-      color: 'from-blue-400 to-blue-600',
-      page: 'video-learning'
-    },
-    {
       title: 'Learn ISL',
       description: 'Master Indian Sign Language',
       icon: '✋',
@@ -228,7 +221,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
             <Tabs defaultValue="subjects" className="space-y-6">
               <TabsList className="grid w-full grid-cols-5 bg-white/80 backdrop-blur-sm">
                 <TabsTrigger value="subjects">My Subjects</TabsTrigger>
-                <TabsTrigger value="features">All Features</TabsTrigger>
+                <TabsTrigger value="features">Special Features</TabsTrigger>
                 <TabsTrigger value="activities">Recent Activity</TabsTrigger>
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>
                 <TabsTrigger value="friends">Friends</TabsTrigger>

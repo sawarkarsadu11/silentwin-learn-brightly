@@ -225,7 +225,7 @@ const QuizProgress = ({ onBack }: QuizProgressProps) => {
             <TabsContent value="achievements">
               <div className="grid md:grid-cols-2 gap-6">
                 {achievements.map((achievement, index) => (
-                  <Card key={index} className={`bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg ${achievement.earned ? 'ring-2 ring-yellow-400' : 'opacity-60'}`}>
+                  <Card key={index} className={`bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg ${achievement.earned ? 'ring-2 ring-emerald-400' : 'opacity-60'}`}>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
                         <div className={`text-4xl ${achievement.earned ? 'grayscale-0' : 'grayscale'}`}>
@@ -235,7 +235,7 @@ const QuizProgress = ({ onBack }: QuizProgressProps) => {
                           <h3 className="font-bold text-lg">{achievement.title}</h3>
                           <p className="text-sm text-slate-600">{achievement.description}</p>
                           {achievement.earned && (
-                            <Badge className="mt-2 bg-yellow-100 text-yellow-800">Earned!</Badge>
+                            <Badge className="mt-2 bg-emerald-100 text-emerald-800">Earned!</Badge>
                           )}
                         </div>
                       </div>
