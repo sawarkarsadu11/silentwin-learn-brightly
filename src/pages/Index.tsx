@@ -1,14 +1,6 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { 
-  Home, 
-  Video, 
-  Users, 
-  Bell, 
-  Search, 
-  User,
-} from 'lucide-react';
 import HeroSection from '@/components/HeroSection';
 import NavigationBar from '@/components/NavigationBar';
 import AboutSection from '@/components/AboutSection';
@@ -84,10 +76,18 @@ const Index = () => {
       <NavigationBar onGetStarted={handleGetStarted} />
       
       <main>
-        <HeroSection onGetStarted={handleGetStarted} />
-        <AboutSection />
-        <FeaturesSection />
-        <ContactSection />
+        <section id="home">
+          <HeroSection onGetStarted={handleGetStarted} />
+        </section>
+        <section id="about">
+          <AboutSection />
+        </section>
+        <section id="features">
+          <FeaturesSection />
+        </section>
+        <section id="contact">
+          <ContactSection />
+        </section>
       </main>
 
       <LoginModal 

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,12 +15,48 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
   const [selectedBoard, setSelectedBoard] = useState('');
 
   const subjects = [
-    { name: 'Mathematics', progress: 75, icon: '🔢', color: 'from-blue-400 to-blue-600' },
-    { name: 'Science', progress: 60, icon: '🔬', color: 'from-green-400 to-green-600' },
-    { name: 'English', progress: 85, icon: '📚', color: 'from-purple-400 to-purple-600' },
-    { name: 'Social Studies', progress: 45, icon: '🌍', color: 'from-orange-400 to-orange-600' },
-    { name: 'Hindi', progress: 70, icon: '✍️', color: 'from-pink-400 to-pink-600' },
-    { name: 'ISL Learning', progress: 90, icon: '✋', color: 'from-teal-400 to-teal-600' },
+    { 
+      name: 'Mathematics', 
+      progress: 75, 
+      icon: '🔢', 
+      color: 'from-blue-400 to-blue-600',
+      topics: ['Addition & Subtraction', 'Multiplication', 'Fractions', 'Geometry']
+    },
+    { 
+      name: 'Science', 
+      progress: 60, 
+      icon: '🔬', 
+      color: 'from-green-400 to-green-600',
+      topics: ['Solar System', 'Water Cycle', 'Plant Life', 'Animals']
+    },
+    { 
+      name: 'English', 
+      progress: 85, 
+      icon: '📚', 
+      color: 'from-purple-400 to-purple-600',
+      topics: ['Alphabet', 'Grammar', 'Reading', 'Writing']
+    },
+    { 
+      name: 'Social Studies', 
+      progress: 45, 
+      icon: '🌍', 
+      color: 'from-teal-400 to-teal-600',
+      topics: ['Geography', 'History', 'Civics', 'Culture']
+    },
+    { 
+      name: 'Hindi', 
+      progress: 70, 
+      icon: '✍️', 
+      color: 'from-indigo-400 to-indigo-600',
+      topics: ['Letters', 'Words', 'Stories', 'Poems']
+    },
+    { 
+      name: 'ISL Learning', 
+      progress: 90, 
+      icon: '✋', 
+      color: 'from-emerald-400 to-emerald-600',
+      topics: ['Basic Signs', 'Numbers', 'Emotions', 'Daily Life']
+    },
   ];
 
   const features = [
@@ -63,17 +98,17 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
   ];
 
   const recentActivities = [
-    { activity: 'Completed Math Quiz', time: '2 hours ago', score: '8/10' },
-    { activity: 'Watched Science Video', time: 'Yesterday', duration: '15 min' },
-    { activity: 'ISL Practice Session', time: '2 days ago', progress: 'Advanced Level' },
-    { activity: 'Connected with Study Group', time: '3 days ago', type: 'Social' },
+    { activity: 'Completed Math Quiz', time: '2 hours ago', score: '8/10', color: 'bg-blue-100 text-blue-800' },
+    { activity: 'Watched Science Video', time: 'Yesterday', duration: '15 min', color: 'bg-green-100 text-green-800' },
+    { activity: 'ISL Practice Session', time: '2 days ago', progress: 'Advanced Level', color: 'bg-purple-100 text-purple-800' },
+    { activity: 'Connected with Study Group', time: '3 days ago', type: 'Social', color: 'bg-teal-100 text-teal-800' },
   ];
 
   const achievements = [
-    { title: 'Math Master', description: 'Completed 50 math problems', icon: '🏆' },
-    { title: 'Sign Language Star', description: 'Mastered 100 ISL signs', icon: '⭐' },
-    { title: 'Quiz Champion', description: 'Perfect score in 5 quizzes', icon: '🎯' },
-    { title: 'Study Streak', description: '7 days continuous learning', icon: '🔥' },
+    { title: 'Math Master', description: 'Completed 50 math problems', icon: '🏆', color: 'from-amber-400 to-orange-500' },
+    { title: 'Sign Language Star', description: 'Mastered 100 ISL signs', icon: '⭐', color: 'from-purple-400 to-pink-500' },
+    { title: 'Quiz Champion', description: 'Perfect score in 5 quizzes', icon: '🎯', color: 'from-blue-400 to-cyan-500' },
+    { title: 'Study Streak', description: '7 days continuous learning', icon: '🔥', color: 'from-emerald-400 to-teal-500' },
   ];
 
   return (
@@ -190,13 +225,59 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
               </Card>
             </div>
 
-            <Tabs defaultValue="features" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm">
-                <TabsTrigger value="features">All Features</TabsTrigger>
+            <Tabs defaultValue="subjects" className="space-y-6">
+              <TabsList className="grid w-full grid-cols-5 bg-white/80 backdrop-blur-sm">
                 <TabsTrigger value="subjects">My Subjects</TabsTrigger>
+                <TabsTrigger value="features">All Features</TabsTrigger>
                 <TabsTrigger value="activities">Recent Activity</TabsTrigger>
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>
+                <TabsTrigger value="friends">Friends</TabsTrigger>
               </TabsList>
+
+              <TabsContent value="subjects">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {subjects.map((subject, index) => (
+                    <Card 
+                      key={index} 
+                      className="subject-card group"
+                      onClick={() => onNavigate('video-learning')}
+                    >
+                      <CardHeader className="pb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                            <span className="text-2xl">{subject.icon}</span>
+                          </div>
+                          <div>
+                            <CardTitle className="text-lg">{subject.name}</CardTitle>
+                            <CardDescription>{subject.progress}% Complete</CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <Progress value={subject.progress} className="mb-4" />
+                        <div className="mb-4">
+                          <p className="text-sm text-slate-600 mb-2">Topics:</p>
+                          <div className="flex flex-wrap gap-1">
+                            {subject.topics.slice(0, 3).map((topic, idx) => (
+                              <Badge key={idx} variant="secondary" className="text-xs">
+                                {topic}
+                              </Badge>
+                            ))}
+                            {subject.topics.length > 3 && (
+                              <Badge variant="secondary" className="text-xs">
+                                +{subject.topics.length - 3} more
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                        <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg transition-all duration-300">
+                          Start Learning
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
 
               <TabsContent value="features">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -218,32 +299,6 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="subjects">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {subjects.map((subject, index) => (
-                    <Card key={index} className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300">
-                      <CardHeader className="pb-4">
-                        <div className="flex items-center space-x-3">
-                          <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                            <span className="text-2xl">{subject.icon}</span>
-                          </div>
-                          <div>
-                            <CardTitle className="text-lg">{subject.name}</CardTitle>
-                            <CardDescription>{subject.progress}% Complete</CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <Progress value={subject.progress} className="mb-4" />
-                        <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg transition-all duration-300">
-                          Continue Learning
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-
               <TabsContent value="activities">
                 <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
                   <CardHeader>
@@ -258,7 +313,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                             <div className="font-medium text-slate-800">{activity.activity}</div>
                             <div className="text-sm text-slate-500">{activity.time}</div>
                           </div>
-                          <Badge variant="secondary">
+                          <Badge className={activity.color}>
                             {activity.score || activity.duration || activity.progress || activity.type}
                           </Badge>
                         </div>
@@ -271,10 +326,12 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
               <TabsContent value="achievements">
                 <div className="grid md:grid-cols-2 gap-6">
                   {achievements.map((achievement, index) => (
-                    <Card key={index} className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
+                    <Card key={index} className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg overflow-hidden">
                       <CardContent className="p-6">
                         <div className="flex items-center space-x-4">
-                          <div className="text-4xl">{achievement.icon}</div>
+                          <div className={`w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-2xl flex items-center justify-center`}>
+                            <span className="text-3xl">{achievement.icon}</span>
+                          </div>
                           <div>
                             <h3 className="font-bold text-slate-800">{achievement.title}</h3>
                             <p className="text-sm text-slate-600">{achievement.description}</p>
@@ -284,6 +341,28 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                     </Card>
                   ))}
                 </div>
+              </TabsContent>
+
+              <TabsContent value="friends">
+                <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
+                  <CardHeader>
+                    <CardTitle>SilentWin Friends</CardTitle>
+                    <CardDescription>Connect with your learning community</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-center py-8">
+                      <div className="text-6xl mb-4">👫</div>
+                      <h3 className="text-xl font-bold mb-2">Connect with Friends</h3>
+                      <p className="text-slate-600 mb-4">Join study groups, chat safely, and learn together</p>
+                      <Button 
+                        onClick={() => onNavigate('friends')}
+                        className="bg-gradient-to-r from-pink-500 to-purple-600"
+                      >
+                        Explore Friends
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
             </Tabs>
           </>

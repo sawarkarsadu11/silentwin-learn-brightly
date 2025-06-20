@@ -35,11 +35,11 @@ const NavigationBar = ({ onGetStarted }: NavigationBarProps) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-lg">✋</span>
             </div>
             <div>
-              <h1 className="font-bold text-xl gradient-text">SilentWin</h1>
+              <h1 className="font-bold text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">SilentWin</h1>
               <p className="text-xs text-slate-500">Learn Beyond Sound</p>
             </div>
           </div>
@@ -59,6 +59,12 @@ const NavigationBar = ({ onGetStarted }: NavigationBarProps) => {
               About
             </button>
             <button 
+              onClick={() => scrollToSection('features')}
+              className="nav-link"
+            >
+              Features
+            </button>
+            <button 
               onClick={() => scrollToSection('contact')}
               className="nav-link"
             >
@@ -69,7 +75,7 @@ const NavigationBar = ({ onGetStarted }: NavigationBarProps) => {
           {/* Get Started Button */}
           <Button 
             onClick={onGetStarted}
-            className="bg-gradient-primary hover:shadow-lg transition-all duration-300"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg transition-all duration-300"
           >
             Get Started
           </Button>

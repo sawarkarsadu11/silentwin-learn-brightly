@@ -120,4 +120,16 @@
   .nav-link:hover::after {
     @apply w-full;
   }
+
+  .subject-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer;
+  }
+
+  .achievement-badge {
+    @apply bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg;
+  }
+
+  .video-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl flex items-end justify-start p-4;
+  }
 }
