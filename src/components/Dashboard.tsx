@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,11 +8,47 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface DashboardProps {
   onNavigate: (page: string) => void;
+  onShowClassBoardSelection?: () => void;
+  showClassBoardSelection?: boolean;
+  initialShowSelection?: boolean;
+  onClassBoardSelected?: () => void;
 }
 
-const Dashboard = ({ onNavigate }: DashboardProps) => {
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedBoard, setSelectedBoard] = useState('');
+const Dashboard = ({ onNavigate, onShowClassBoardSelection, showClassBoardSelection, initialShowSelection, onClassBoardSelected }: DashboardProps) => {
+  const [selectedClass, setSelectedClass] = useState(() => localStorage.getItem('silentwin_class') || '');
+  const [selectedBoard, setSelectedBoard] = useState(() => localStorage.getItem('silentwin_board') || '');
+  const [showSelection, setShowSelection] = useState(initialShowSelection || false);
+
+  // Show selection if forced by prop or not selected (never on back arrow)
+  const shouldShowSelection = showClassBoardSelection || showSelection || (!selectedClass && !selectedBoard);
+
+  const handleClassChange = (value: string) => {
+    setSelectedClass(value);
+    localStorage.setItem('silentwin_class', value);
+  };
+  const handleBoardChange = (value: string) => {
+    setSelectedBoard(value);
+    localStorage.setItem('silentwin_board', value);
+  };
+  const handleSelectionDone = () => {
+    setShowSelection(false);
+    if (onClassBoardSelected) onClassBoardSelected();
+  };
+
+  // On mount, initialize from localStorage if available
+  useEffect(() => {
+    const storedClass = localStorage.getItem('silentwin_class');
+    const storedBoard = localStorage.getItem('silentwin_board');
+    if (storedClass) setSelectedClass(storedClass);
+    if (storedBoard) setSelectedBoard(storedBoard);
+  }, []);
+
+  // If selection is done, call handler
+  useEffect(() => {
+    if (selectedClass && selectedBoard && shouldShowSelection) {
+      handleSelectionDone();
+    }
+  }, [selectedClass, selectedBoard]);
 
   const subjects = [
     { 
@@ -98,7 +134,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
   ];
 
   const achievements = [
-    { title: 'Math Master', description: 'Completed 50 math problems', icon: '🏆', color: 'from-amber-400 to-orange-500' },
+    { title: 'Math Master', description: 'Completed 50 math problems', icon: '🏆', color: 'from-blue-400 to-purple-500' },
     { title: 'Sign Language Star', description: 'Mastered 100 ISL signs', icon: '⭐', color: 'from-purple-400 to-pink-500' },
     { title: 'Quiz Champion', description: 'Perfect score in 5 quizzes', icon: '🎯', color: 'from-blue-400 to-cyan-500' },
     { title: 'Study Streak', description: '7 days continuous learning', icon: '🔥', color: 'from-emerald-400 to-teal-500' },
@@ -119,16 +155,23 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                 <p className="text-sm text-slate-500">Learn Beyond Sound</p>
               </div>
             </div>
-            <Button variant="outline" className="border-slate-200 hover:bg-slate-50">
-              Profile Settings
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" className="border-slate-200 hover:bg-slate-50">
+                Profile Settings
+              </Button>
+              {(!shouldShowSelection && onShowClassBoardSelection) && (
+                <Button variant="secondary" onClick={() => { setShowSelection(true); onShowClassBoardSelection(); }}>
+                  Change Class/Board
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-8">
         {/* Class and Board Selection */}
-        {(!selectedClass || !selectedBoard) && (
+        {shouldShowSelection && (
           <Card className="mb-8 bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">Choose Your Learning Path</CardTitle>
@@ -140,11 +183,11 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                   <label className="block text-sm font-medium text-slate-700 mb-2">
                     Select Class
                   </label>
-                  <Select value={selectedClass} onValueChange={setSelectedClass}>
-                    <SelectTrigger className="bg-white/70">
+                  <Select value={selectedClass} onValueChange={handleClassChange}>
+                    <SelectTrigger className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50">
                       <SelectValue placeholder="Choose your class" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gradient-to-br from-blue-50 via-purple-50 to-white/90">
                       <SelectItem value="nursery">Nursery</SelectItem>
                       <SelectItem value="class1">Class 1</SelectItem>
                       <SelectItem value="class2">Class 2</SelectItem>
@@ -164,11 +207,11 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                   <label className="block text-sm font-medium text-slate-700 mb-2">
                     Select Board
                   </label>
-                  <Select value={selectedBoard} onValueChange={setSelectedBoard}>
-                    <SelectTrigger className="bg-white/70">
+                  <Select value={selectedBoard} onValueChange={handleBoardChange}>
+                    <SelectTrigger className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50">
                       <SelectValue placeholder="Choose your board" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gradient-to-br from-blue-50 via-purple-50 to-white/90">
                       <SelectItem value="cbse">CBSE</SelectItem>
                       <SelectItem value="state">State Board</SelectItem>
                       <SelectItem value="icse">ICSE</SelectItem>
@@ -176,7 +219,6 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                   </Select>
                 </div>
               </div>
-              
               {selectedClass && selectedBoard && (
                 <div className="text-center">
                   <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 text-lg">
@@ -188,7 +230,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
           </Card>
         )}
 
-        {selectedClass && selectedBoard && (
+        {!shouldShowSelection && selectedClass && selectedBoard && (
           <>
             {/* Quick Stats */}
             <div className="grid md:grid-cols-4 gap-6 mb-8">
@@ -232,7 +274,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                   {subjects.map((subject, index) => (
                     <Card 
                       key={index} 
-                      className="subject-card group"
+                      className="subject-card group bg-gradient-to-br from-blue-100 via-purple-100 to-blue-200"
                       onClick={() => onNavigate('video-learning')}
                     >
                       <CardHeader className="pb-4">
@@ -277,7 +319,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                   {features.map((feature, index) => (
                     <Card 
                       key={index} 
-                      className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300 cursor-pointer"
+                      className="bg-gradient-to-br from-blue-100 via-purple-100 to-blue-200 border border-white/20 rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300 cursor-pointer"
                       onClick={() => onNavigate(feature.page)}
                     >
                       <CardContent className="p-6 text-center">
@@ -319,7 +361,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
               <TabsContent value="achievements">
                 <div className="grid md:grid-cols-2 gap-6">
                   {achievements.map((achievement, index) => (
-                    <Card key={index} className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg overflow-hidden">
+                    <Card key={index} className="bg-gradient-to-br from-blue-100 via-purple-100 to-blue-200 border border-white/20 rounded-2xl shadow-lg overflow-hidden">
                       <CardContent className="p-6">
                         <div className="flex items-center space-x-4">
                           <div className={`w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-2xl flex items-center justify-center`}>

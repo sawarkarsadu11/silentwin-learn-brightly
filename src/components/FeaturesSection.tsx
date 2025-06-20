@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -23,28 +22,28 @@ const FeaturesSection = () => {
       icon: '📊',
       title: 'Quiz & Progress Tracker',
       description: 'Visual assessments and detailed progress tracking with personalized feedback',
-      color: 'from-green-400 to-green-600',
+      color: 'from-blue-400 to-purple-600',
       benefits: ['Visual Quizzes', 'Progress Analytics', 'Skill Mapping']
     },
     {
       icon: '👫',
       title: 'SilentWin Friends',
       description: 'Connect with peers through video chat and text messaging in a safe environment',
-      color: 'from-pink-400 to-pink-600',
+      color: 'from-purple-400 to-blue-600',
       benefits: ['Peer Learning', 'Study Groups', 'Safe Environment']
     },
     {
       icon: '🤖',
       title: 'AI Chatbot',
       description: 'Smart AI assistant that understands sign language and provides instant help',
-      color: 'from-indigo-400 to-indigo-600',
+      color: 'from-blue-400 to-purple-600',
       benefits: ['24/7 Support', 'Sign Recognition', 'Instant Answers']
     },
     {
       icon: '🔄',
       title: 'Speech/Text to Sign Converter',
       description: 'Real-time conversion of speech and text to sign language animations',
-      color: 'from-teal-400 to-teal-600',
+      color: 'from-purple-400 to-blue-600',
       benefits: ['Real-time Conversion', 'Multiple Languages', 'Smooth Animations']
     }
   ];
@@ -65,7 +64,7 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className="feature-card group hover:shadow-2xl transition-all duration-500"
+              className="feature-card group hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-blue-50 via-purple-50 to-white/90"
             >
               <CardHeader className="text-center pb-4">
                 <div className={`w-20 h-20 bg-gradient-to-r ${feature.color} rounded-3xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
@@ -96,7 +95,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Feature Highlight */}
-        <div className="mt-20 bg-gradient-hero rounded-3xl p-12 text-center text-white relative overflow-hidden">
+        <div className="mt-20 bg-gradient-to-br from-blue-400 via-purple-400 to-blue-600 rounded-3xl p-12 text-center text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
           <div className="relative z-10">
             <h3 className="text-3xl font-bold mb-6">

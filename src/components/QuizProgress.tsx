@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -169,7 +168,7 @@ const QuizProgress = ({ onBack }: QuizProgressProps) => {
                 <div className="grid md:grid-cols-4 gap-6">
                   <Card className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg text-center">
                     <CardContent className="p-6">
-                      <Trophy className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                      <Trophy className="w-8 h-8 text-blue-500 mx-auto mb-2" />
                       <div className="text-2xl font-bold text-slate-800">24</div>
                       <div className="text-sm text-slate-500">Quizzes Completed</div>
                     </CardContent>

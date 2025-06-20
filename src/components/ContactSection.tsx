@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -20,7 +19,7 @@ const ContactSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <Card className="feature-card">
+          <Card className="feature-card bg-gradient-to-br from-blue-50 via-purple-50 to-white/90">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold mb-6 text-slate-800">Send us a Message</h3>
               <form className="space-y-6">
@@ -31,7 +30,7 @@ const ContactSection = () => {
                     </label>
                     <Input 
                       placeholder="Enter your first name"
-                      className="bg-white/70 border-slate-200 focus:border-silent-blue-400"
+                      className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50 border-slate-200 focus:border-blue-400"
                     />
                   </div>
                   <div>
@@ -40,7 +39,7 @@ const ContactSection = () => {
                     </label>
                     <Input 
                       placeholder="Enter your last name"
-                      className="bg-white/70 border-slate-200 focus:border-silent-blue-400"
+                      className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50 border-slate-200 focus:border-blue-400"
                     />
                   </div>
                 </div>
@@ -52,7 +51,7 @@ const ContactSection = () => {
                   <Input 
                     type="email"
                     placeholder="Enter your email"
-                    className="bg-white/70 border-slate-200 focus:border-silent-blue-400"
+                    className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50 border-slate-200 focus:border-blue-400"
                   />
                 </div>
 
@@ -63,13 +62,13 @@ const ContactSection = () => {
                   <Textarea 
                     placeholder="Tell us how we can help you..."
                     rows={5}
-                    className="bg-white/70 border-slate-200 focus:border-silent-blue-400"
+                    className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50 border-slate-200 focus:border-blue-400"
                   />
                 </div>
 
                 <Button 
                   type="submit"
-                  className="w-full bg-gradient-primary hover:shadow-lg transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg transition-all duration-300"
                   size="lg"
                 >
                   Send Message
@@ -80,10 +79,10 @@ const ContactSection = () => {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            <Card className="feature-card">
+            <Card className="feature-card bg-gradient-to-r from-blue-400 to-purple-600">
               <CardContent className="p-8">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-silent-blue-400 to-silent-blue-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-600 rounded-xl flex items-center justify-center">
                     <span className="text-xl text-white">📧</span>
                   </div>
                   <div>
@@ -95,10 +94,10 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <Card className="feature-card">
+            <Card className="feature-card bg-gradient-to-r from-purple-400 to-blue-600">
               <CardContent className="p-8">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-silent-purple-400 to-silent-purple-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-blue-600 rounded-xl flex items-center justify-center">
                     <span className="text-xl text-white">💬</span>
                   </div>
                   <div>
@@ -110,10 +109,10 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <Card className="feature-card">
+            <Card className="feature-card bg-gradient-to-r from-blue-400 to-purple-600">
               <CardContent className="p-8">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-silent-green-400 to-silent-green-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-600 rounded-xl flex items-center justify-center">
                     <span className="text-xl text-white">🎥</span>
                   </div>
                   <div>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import HeroSection from '@/components/HeroSection';
@@ -20,10 +19,12 @@ const Index = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showAIChat, setShowAIChat] = useState(false);
   const [currentPage, setCurrentPage] = useState('dashboard');
+  const [showClassBoardSelection, setShowClassBoardSelection] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
     setShowLoginModal(false);
+    setShowClassBoardSelection(true);
     setCurrentPage('dashboard');
   };
 
@@ -31,12 +32,22 @@ const Index = () => {
     setShowLoginModal(true);
   };
 
+  const handleShowClassBoardSelection = () => {
+    setShowClassBoardSelection(true);
+  };
+
+  const handleClassBoardSelected = () => {
+    setShowClassBoardSelection(false);
+  };
+
   const renderCurrentPage = () => {
     if (!isLoggedIn) return null;
-    
+    if (showClassBoardSelection) {
+      return <Dashboard onNavigate={setCurrentPage} showClassBoardSelection initialShowSelection onClassBoardSelected={handleClassBoardSelected} />;
+    }
     switch (currentPage) {
       case 'dashboard':
-        return <Dashboard onNavigate={setCurrentPage} />;
+        return <Dashboard onNavigate={setCurrentPage} onShowClassBoardSelection={handleShowClassBoardSelection} />;
       case 'video-learning':
         return <VideoLearning onBack={() => setCurrentPage('dashboard')} />;
       case 'learn-isl':
@@ -48,7 +59,7 @@ const Index = () => {
       case 'text-to-sign':
         return <TextToSign onBack={() => setCurrentPage('dashboard')} />;
       default:
-        return <Dashboard onNavigate={setCurrentPage} />;
+        return <Dashboard onNavigate={setCurrentPage} onShowClassBoardSelection={handleShowClassBoardSelection} />;
     }
   };
 

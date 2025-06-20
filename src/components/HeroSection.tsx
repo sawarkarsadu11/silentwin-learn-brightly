@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -32,13 +31,6 @@ const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
                 className="bg-gradient-primary hover:shadow-xl transition-all duration-300 text-lg px-8 py-4"
               >
                 Start Learning Today
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-silent-blue-200 hover:bg-silent-blue-50 text-lg px-8 py-4"
-              >
-                Watch Demo
               </Button>
             </div>
 

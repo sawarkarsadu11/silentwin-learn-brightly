@@ -98,7 +98,7 @@ const SilentWinFriends = ({ onBack }: SilentWinFriendsProps) => {
                             </div>
                             <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white ${
                               friend.status === 'online' ? 'bg-green-400' : 
-                              friend.status === 'away' ? 'bg-amber-400' : 'bg-gray-400'
+                              friend.status === 'away' ? 'bg-purple-400' : 'bg-gray-400'
                             }`}></div>
                           </div>
                           <div className="flex-1">

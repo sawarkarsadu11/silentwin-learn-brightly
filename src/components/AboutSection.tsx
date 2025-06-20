@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -17,9 +16,9 @@ const AboutSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          <Card className="feature-card">
+          <Card className="feature-card bg-gradient-to-br from-blue-100 via-purple-100 to-blue-200">
             <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-silent-blue-400 to-silent-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">🎯</span>
               </div>
               <h3 className="text-xl font-bold mb-4 text-slate-800">Our Mission</h3>
@@ -30,9 +29,9 @@ const AboutSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="feature-card">
+          <Card className="feature-card bg-gradient-to-br from-purple-100 via-blue-100 to-purple-200">
             <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-silent-purple-400 to-silent-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">👥</span>
               </div>
               <h3 className="text-xl font-bold mb-4 text-slate-800">Student Impact</h3>
@@ -43,9 +42,9 @@ const AboutSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="feature-card">
+          <Card className="feature-card bg-gradient-to-br from-blue-100 via-purple-100 to-blue-200">
             <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-silent-green-400 to-silent-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">🚀</span>
               </div>
               <h3 className="text-xl font-bold mb-4 text-slate-800">Innovation</h3>
